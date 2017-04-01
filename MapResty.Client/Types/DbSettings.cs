@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace MapResty.Client.Types
 {
-    class DbSettings
+    public class DbSettings
     {
+        [JsonProperty(PropertyName = "crs")]
+        public CRS CRS { get; set; }
     }
 }
