@@ -24,13 +24,13 @@ namespace MapResty.Client.Types
          * 空间过滤filter
          */
         [JsonProperty(PropertyName = "spatialFilter")]
-        public SpatialFilter spatialFilter { get; set; }
+        public SpatialFilter SpatialFilter { get; set; }
 
         /**
          * 结果坐标系
          */
         [JsonProperty(PropertyName = "crs")]
-        public CRS crs { get; set; }
+        public CRS CRS { get; set; }
 
         /**
          * 要返回的自定义属性

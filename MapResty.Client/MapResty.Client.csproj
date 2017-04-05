@@ -51,8 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Client.cs" />
     <Compile Include="Api\FeatureLayer.cs" />
     <Compile Include="Api\MapDB.cs" />
+    <Compile Include="Api\RestException.cs" />
+    <Compile Include="Internal\Extensions.cs" />
     <Compile Include="Internal\JsonDeserializer.cs" />
     <Compile Include="Internal\RestResult.cs" />
     <Compile Include="Api\TopoQuery.cs" />
