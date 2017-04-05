@@ -1,15 +1,89 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace MapResty.Client.Types
 {
-    public class CRS
+    public class CRS : IEquatable<CRS>
     {
         [JsonProperty(PropertyName = "type", Required = Required.Always)]
         public string Type { get; set; }
 
         [JsonProperty(PropertyName = "properties", Required = Required.Always)]
         public Dictionary<string, object> Properties { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(this, obj as CRS);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public bool Equals(CRS other)
+        {
+            return Equals(this, other);
+        }
+
+        public bool Equals(CRS left, CRS right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+
+            if (left.Type != right.Type)
+            {
+                return false;
+            }
+
+            var leftIsNull = ReferenceEquals(null, left.Properties);
+            var rightIsNull = ReferenceEquals(null, right.Properties);
+            var bothAreMissing = leftIsNull && rightIsNull;
+
+            if (bothAreMissing || leftIsNull != rightIsNull)
+            {
+                return bothAreMissing;
+            }
+
+            foreach (var item in left.Properties)
+            {
+                if (!right.Properties.ContainsKey(item.Key))
+                {
+                    return false;
+                }
+                if (!object.Equals(item.Value, right.Properties[item.Key]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool operator ==(CRS left, CRS right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+            return left != null && left.Equals(right);
+        }
+
+        public static bool operator !=(CRS left, CRS right)
+        {
+            return !(left == right);
+        }
 
         public static CRS CreateProj4(string proj4str)
         {

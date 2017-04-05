@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MapResty.Client.Types
 {
-    public class Layer
+    public class Layer : IEquatable<Layer>
     {
         public static string TYPE_DB_TABLE = "db_table";
         public static string TYPE_DB_VIEW = "db_view";
@@ -59,5 +60,112 @@ namespace MapResty.Client.Types
 
         [JsonProperty(PropertyName = "fields")]
         public List<LayerField> Fields { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(this, obj as Layer);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public bool Equals(Layer other)
+        {
+            return Equals(this, other);
+        }
+
+        public bool Equals(Layer left, Layer right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+
+            if (left.Id != right.Id)
+            {
+                return false;
+            }
+            if (left.Name != right.Name)
+            {
+                return false;
+            }
+            if (left.Type != right.Type)
+            {
+                return false;
+            }
+            if (left.Source != right.Source)
+            {
+                return false;
+            }
+
+            var leftIsNull = ReferenceEquals(null, left.Properties);
+            var rightIsNull = ReferenceEquals(null, right.Properties);
+            var bothAreMissing = leftIsNull && rightIsNull;
+
+            if (bothAreMissing || leftIsNull != rightIsNull)
+            {
+                return bothAreMissing;
+            }
+
+            foreach (var item in left.Properties)
+            {
+                if (!right.Properties.ContainsKey(item.Key))
+                {
+                    return false;
+                }
+                if (!object.Equals(item.Value, right.Properties[item.Key]))
+                {
+                    return false;
+                }
+            }
+
+            leftIsNull = ReferenceEquals(null, left.Fields);
+            rightIsNull = ReferenceEquals(null, right.Fields);
+            bothAreMissing = leftIsNull && rightIsNull;
+
+            if (bothAreMissing || leftIsNull != rightIsNull)
+            {
+                return bothAreMissing;
+            }
+
+            if (left.Fields.Count != right.Fields.Count)
+            {
+                return false;
+            }
+
+            foreach (var field in left.Fields)
+            {
+                if (!right.Fields.Contains(field))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool operator ==(Layer left, Layer right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+            return left != null && left.Equals(right);
+        }
+
+        public static bool operator !=(Layer left, Layer right)
+        {
+            return !(left == right);
+        }
     }
 }

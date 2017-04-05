@@ -2,7 +2,7 @@
 
 namespace MapResty.Client.Internal
 {
-    class RestResult
+    public class RestResult
     {
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }

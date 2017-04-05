@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace MapResty.Client.Types
 {
-    public class LayerField
+    public class LayerField : IEquatable<LayerField>
     {
         /// <summary>
         /// 属性名
@@ -33,5 +34,73 @@ namespace MapResty.Client.Types
         /// </summary>
         [JsonProperty(PropertyName = "notNull")]
         public int NotNull { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(this, obj as LayerField);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public bool Equals(LayerField other)
+        {
+            return Equals(this, other);
+        }
+
+        public bool Equals(LayerField left, LayerField right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+
+            if (left.FieldName != right.FieldName)
+            {
+                return false;
+            }
+            if (left.DataType != left.DataType)
+            {
+                return false;
+            }
+            if (left.FieldSize != right.FieldSize)
+            {
+                return false;
+            }
+            if (left.DecimalSize != right.DecimalSize)
+            {
+                return false;
+            }
+            if (left.NotNull != right.NotNull)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool operator ==(LayerField left, LayerField right)
+        {
+            if (ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if (ReferenceEquals(null, right))
+            {
+                return false;
+            }
+            return left != null && left.Equals(right);
+        }
+
+        public static bool operator !=(LayerField left, LayerField right)
+        {
+            return !(left == right);
+        }
     }
 }
