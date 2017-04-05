@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapResty.Client", "MapResty.Client\MapResty.Client.csproj", "{57D6B6D0-0664-4EF7-BD85-8A70F3066998}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapResty.Client.Tests", "MapResty.Client.Tests\MapResty.Client.Tests.csproj", "{E006590A-944B-4EC5-8963-2B1B61205628}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{57D6B6D0-0664-4EF7-BD85-8A70F3066998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57D6B6D0-0664-4EF7-BD85-8A70F3066998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57D6B6D0-0664-4EF7-BD85-8A70F3066998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E006590A-944B-4EC5-8963-2B1B61205628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E006590A-944B-4EC5-8963-2B1B61205628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E006590A-944B-4EC5-8963-2B1B61205628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E006590A-944B-4EC5-8963-2B1B61205628}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
