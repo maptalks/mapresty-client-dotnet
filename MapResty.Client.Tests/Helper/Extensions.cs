@@ -7,8 +7,6 @@ namespace MapResty.Client.Tests.Helper
 {
     static class Extensions
     {
-        private static string needle = "data=";
-        
         public static Dictionary<string, string> GetFormData(this HttpListenerRequest req)
         {
             var dict = new Dictionary<string, string>();

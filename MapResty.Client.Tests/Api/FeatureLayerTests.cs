@@ -9,34 +9,18 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MapResty.Client.Tests;
 
 namespace MapResty.Client.Api.Tests
 {
     [TestClass()]
     public class FeatureLayerTests
     {
-        private static int port = 11215;
         private static string urlPrefix = "/rest/sdb/database";
         private static string db1 = "db1";
         private static string layer1 = "layer1";
         private static string urlPrefix1 = String.Join("/", new string[] { urlPrefix, db1, "layers" });
-        private static MockServer mockServer;
-
-        [ClassInitialize()]
-        public static void ClassInit(TestContext context)
-        {
-            var defaultHandlers = new List<MockHttpHandler>()
-            {
-                new MockHttpHandler("/", (req, res, param) => {
-                })
-            };
-            mockServer = new MockServer(port, defaultHandlers);
-        }
-
-        [ClassCleanup()]
-        public static void ClassCleanup()
-        {
-        }
+        private static MockServer mockServer = Global.mockServer;
 
         [TestInitialize()]
         public void TestInit()
@@ -83,7 +67,7 @@ namespace MapResty.Client.Api.Tests
         public void UpdateLayerFieldTest()
         {
             var oldName = "fieldName";
-            
+
             var url = String.Join("/", new string[] { urlPrefix1, layer1, "fields", oldName });
             var handler = new MockHttpHandler(url, "POST", (req, res, param) =>
             {
@@ -115,7 +99,7 @@ namespace MapResty.Client.Api.Tests
         public void RemoveLayerFieldTest()
         {
             var fieldName = "fieldName";
-            
+
             var url = String.Join("/", new string[] { urlPrefix1, layer1, "fields", fieldName });
             var handler = new MockHttpHandler(url, "POST", (req, res, param) =>
             {
@@ -201,7 +185,7 @@ namespace MapResty.Client.Api.Tests
                     {
                     }
                 }
-                
+
                 return JsonConvert.SerializeObject(result);
             });
             mockServer.AddRequestHandler(handler);
@@ -250,7 +234,7 @@ namespace MapResty.Client.Api.Tests
                     {
                     }
                 }
-                
+
                 return JsonConvert.SerializeObject(result);
             });
             mockServer.AddRequestHandler(handler);
@@ -299,7 +283,7 @@ namespace MapResty.Client.Api.Tests
                     {
                     }
                 }
-                
+
                 return JsonConvert.SerializeObject(result);
             });
             mockServer.AddRequestHandler(handler);
@@ -391,7 +375,7 @@ namespace MapResty.Client.Api.Tests
         public void RemoveTest()
         {
             var expected = "x = 3";
-            
+
             var url = String.Join("/", new string[] { urlPrefix1, layer1, "data" });
             var handler = new MockHttpHandler(url, "POST", (req, res, param) =>
             {

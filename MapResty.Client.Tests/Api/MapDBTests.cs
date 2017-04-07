@@ -7,32 +7,16 @@ using MockHttpServer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using MapResty.Client.Tests;
 
 namespace MapResty.Client.Api.Tests
 {
     [TestClass()]
     public class MapDBTests
     {
-        private static int port = 11215;
         private static string urlPrefix = "/rest/sdb/database";
         private static string db1 = "db1";
-        private static MockServer mockServer;
-
-        [ClassInitialize()]
-        public static void ClassInit(TestContext context)
-        {
-            var defaultHandlers = new List<MockHttpHandler>()
-            {
-                new MockHttpHandler("/", (req, res, param) => {
-                })
-            };
-            mockServer = new MockServer(port, defaultHandlers);
-        }
-
-        [ClassCleanup()]
-        public static void ClassCleanup()
-        {
-        }
+        private static MockServer mockServer = Global.mockServer;
 
         [TestInitialize()]
         public void TestInit()
