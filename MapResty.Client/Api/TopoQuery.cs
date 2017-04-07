@@ -1,4 +1,5 @@
-﻿using GeoJSON.Net.Geometry;
+﻿using GeoJSON.Net.Converters;
+using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -7,19 +8,23 @@ namespace MapResty.Client.Api
 {
     public class TopoQuery : Client
     {
+        public TopoQuery()
+            : this("localhost", 11215)
+        { }
+
         public TopoQuery(string host, int port)
         {
             var builder = new UriBuilder("http", host, port, "/rest/geometry");
             this.BaseUrl = builder.Uri;
         }
 
-        public int[] Relate(IGeometryObject src, IGeometryObject[] targets, int relation)
+        public int[] Relate(IGeometryObject source, IGeometryObject[] targets, int relation)
         {
             var request = new RestRequest();
             request.Resource = "relation";
             request.Method = Method.POST;
 
-            request.AddParameter("source", JsonConvert.SerializeObject(src));
+            request.AddParameter("source", JsonConvert.SerializeObject(source));
             request.AddParameter("targets", JsonConvert.SerializeObject(targets));
             request.AddParameter("relation", relation);
 
@@ -100,8 +105,10 @@ namespace MapResty.Client.Api
 
             var result = this.Execute(request);
             var data = Convert.ToString(result.Data);
-            var geometries = JsonConvert.DeserializeObject<IGeometryObject[]>(data);
+            var geometries = JsonConvert.DeserializeObject<IGeometryObject[]>(data, converter);
             return geometries;
         }
+
+        private static GeometryConverter converter = new GeometryConverter();
     }
 }
