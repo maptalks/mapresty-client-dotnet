@@ -1,0 +1,9 @@
+before_build:
+- nuget restore mapresty-client-dotnet.sln
+branches:
+  only:
+  - master
+skip_tags: true
+build:
+  project: mapresty-client-dotnet.sln
+  verbosity: minimal
