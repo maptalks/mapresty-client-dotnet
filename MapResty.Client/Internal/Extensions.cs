@@ -9,6 +9,11 @@ namespace MapResty.Client.Internal
     {
         public static IRestRequest AddParametersFromQueryFilter(this RestRequest request, QueryFilter filter)
         {
+            if (filter == null)
+            {
+                return request;
+            }
+            
             var condition = filter.Condition;
             if (!String.IsNullOrWhiteSpace(condition))
             {

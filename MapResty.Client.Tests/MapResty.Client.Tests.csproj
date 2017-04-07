@@ -52,6 +52,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -69,6 +70,7 @@
     <Compile Include="Api\FeatureLayerTests.cs" />
     <Compile Include="Api\MapDBTests.cs" />
     <Compile Include="Api\TopoQueryTests.cs" />
+    <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
