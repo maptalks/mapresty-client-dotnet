@@ -7,14 +7,14 @@ branches:
 # skip_tags: true
 only_commits:
   message: /build/                # Start a new build if message contains 'build'
-# build Configuration, i.e. Debug, Release, etc.
 # enable patching of AssemblyInfo.* files
 assembly_info:
   patch: true
   file: AssemblyInfo.*
-  assembly_version: "1.0.{build}"
+  assembly_version: "{version}"
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
+# build Configuration, i.e. Debug, Release, etc.
 configuration: Release
 build:
   project: mapresty-client-dotnet.sln
