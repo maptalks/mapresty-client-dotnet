@@ -7,12 +7,22 @@ branches:
 skip_tags: true
 build:
   project: mapresty-client-dotnet.sln
+  publish_nuget: true 
   verbosity: minimal
 artifacts:
-  - path: '**\*.nupkg'
-    type: NuGetPackage
+  - path: MapResty.Client.nupkg
+    type: Auto
 deploy:
-  provider: NuGet
-  apk_key:
-    secure: nFpgHCOjA2HLkJrnA3fohdBETPBdxDWftMSUVWAXUi53wVH3oJLGTEYTlJgcvjUf
-  artifact: MapResty.Client.nupkg
+    # Deploying to NuGet feed
+  - provider: NuGet
+    apk_key:
+      secure: nFpgHCOjA2HLkJrnA3fohdBETPBdxDWftMSUVWAXUi53wVH3oJLGTEYTlJgcvjUf
+    artifact: MapResty.Client.nupkg
+    # Deploy to GitHub Releases
+  - provider: GitHub
+    artifact: MapResty.Client.nupkg
+    draft: false
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
+      appveyor_repo_tag: true       # deploy on tag push only
