@@ -39,10 +39,6 @@
       <HintPath>..\packages\GeoJSON.Net.0.1.51\lib\portable-net40+sl5+wp80+win8+wpa81\GeoJSON.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HttpMockSlim, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Viki.HttpMockSlim.1.0.0\lib\net45\HttpMockSlim.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MockHttpServer, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MockHttpServer.1.3.0.0\lib\net45\MockHttpServer.dll</HintPath>
       <Private>True</Private>
