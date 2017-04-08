@@ -8,3 +8,11 @@ skip_tags: true
 build:
   project: mapresty-client-dotnet.sln
   verbosity: minimal
+artifacts:
+  - path: '**\*.nupkg'
+    type: NuGetPackage
+deploy:
+  provider: NuGet
+  apk_key:
+    secure: nFpgHCOjA2HLkJrnA3fohdBETPBdxDWftMSUVWAXUi53wVH3oJLGTEYTlJgcvjUf
+  artifact: MapResty.Client.nupkg
