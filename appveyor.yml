@@ -7,6 +7,8 @@ branches:
 # skip_tags: true
 only_commits:
   message: /build/                # Start a new build if message contains 'build'
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
 build:
   project: mapresty-client-dotnet.sln
   publish_nuget: true 
