@@ -4,23 +4,24 @@ before_build:
 branches:
   only:
   - master
-skip_tags: true
+# skip_tags: true
+only_commits:
+  message: /build/                # Start a new build if message contains 'build'
 build:
   project: mapresty-client-dotnet.sln
   publish_nuget: true 
   verbosity: minimal
-artifacts:
-  - path: MapResty.Client.nupkg
-    type: Auto
 deploy:
     # Deploying to NuGet feed
   - provider: NuGet
-    apk_key:
+    api_key:
       secure: nFpgHCOjA2HLkJrnA3fohdBETPBdxDWftMSUVWAXUi53wVH3oJLGTEYTlJgcvjUf
-    artifact: MapResty.Client.nupkg
+    artifact: /.*\.nupkg/
     # Deploy to GitHub Releases
   - provider: GitHub
-    artifact: MapResty.Client.nupkg
+    auth_token:
+      secure: 7V+oW4wVzgKgsu21T5GQJg4i1gVpA/XyoYq0OoFJ8oXmDTxP3QTwqTno6W0yFbOU
+    artifact: /.*\.nupkg/
     draft: false
     prerelease: false
     on:
