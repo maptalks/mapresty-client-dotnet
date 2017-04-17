@@ -3,14 +3,26 @@ using System;
 
 namespace MapResty.Client.Types
 {
+    /// <summary>
+    /// 空间数据库信息
+    /// </summary>
     public class DbInfo : IEquatable<DbInfo>
     {
+        /// <summary>
+        /// 数据库名字
+        /// </summary>
         [JsonProperty(PropertyName = "name", Required = Required.Always)]
         public string Name { get; set; }
 
+        /// <summary>
+        /// 所使用的坐标参考系
+        /// </summary>
         [JsonProperty(PropertyName = "crs", Required = Required.Always)]
         public CRS CRS { get; set; }
 
+        /// <summary>
+        /// 版本号
+        /// </summary>
         [JsonProperty(PropertyName = "version", Required = Required.Always)]
         public string Version { get; set; }
 

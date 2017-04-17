@@ -3,6 +3,9 @@ using System;
 
 namespace MapResty.Client.Types
 {
+    /// <summary>
+    /// 图层表字段
+    /// </summary>
     public class LayerField : IEquatable<LayerField>
     {
         /// <summary>

@@ -7,11 +7,17 @@ using MapResty.Client.Internal;
 
 namespace MapResty.Client.Api
 {
+    /// <summary>
+    /// Rest客户端基类
+    /// </summary>
     public abstract class Client
     {
-        public Uri BaseUrl { get; internal set; }
+        internal Uri BaseUrl { get; set; }
 
         private bool compress = true;
+        /// <summary>
+        /// 指示服务端是否使用GZip传输数据
+        /// </summary>
         public bool Compress
         {
             get { return compress; }

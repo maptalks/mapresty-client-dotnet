@@ -3,8 +3,14 @@ using System;
 
 namespace MapResty.Client.Types
 {
+    /// <summary>
+    /// 初始化参数
+    /// </summary>
     public class DbSettings : IEquatable<DbSettings>
     {
+        /// <summary>
+        /// 空间参考系
+        /// </summary>
         [JsonProperty(PropertyName = "crs")]
         public CRS CRS { get; set; }
 
